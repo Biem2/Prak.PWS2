@@ -7,55 +7,12 @@
 </head>
 <body>
   <div class="container">
-    <h2> Cek Cuaca</h2>
+      <h2> Cek Cuaca</h2>
 
     <label for="lokasiInput">Masukkan Lokasi:</label><br>
     <input type="text" id="lokasiInput" placeholder="Contoh: Jakarta">
     <button id="btnCari">Cari</button>
 
-    <hr>
-    <h3>Hasil:</h3>
-    <p><strong>Lokasi:</strong> <span id="Lokasi"></span></p>
-    <p><strong>Negara:</strong> <span id="Negara"></span></p>
-    <p><strong>Kecamatan/Region:</strong> <span id="Kecamatan"></span></p>
-    <p><strong>Suhu (°C):</strong> <span id="Suhu"></span></p>
-    <p><strong>Latitude:</strong> <span id="Latitude"></span></p>
-    <p><strong>Longitude:</strong> <span id="Longitude"></span></p>
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-  <script>
-    $("#btnCari").click(function () {
-      const lokasiInput = $("#lokasiInput").val().trim();
-      if (lokasiInput === "") {
-        alert("Silakan masukkan nama kota terlebih dahulu!");
-        return;
-      }
-
-      const urlapi = `https://api.weatherapi.com/v1/current.json?key=905069ee454e4565b2564306250810&q=${lokasiInput}&aqi=no`;
-
-      $.ajax({
-        url: urlapi,
-        method: "GET",
-        success: function (data) {
-          console.log(data);
-
-          $("#Lokasi").text(data.location.name);
-          $("#Negara").text(data.location.country);
-          $("#Kecamatan").text(data.location.region);
-          $("#Suhu").text(data.current.temp_c + " °C");
-          $("#Latitude").text(data.location.lat);
-          $("#Longitude").text(data.location.lon);
-        },
-        error: function (xhr, status, error) {
-          console.error(error);
-          alert("Gagal mengambil data cuaca. Periksa kembali nama kota atau koneksi internet.");
-        }
-      });
-    });
   </script>
 </body>
 </html>
