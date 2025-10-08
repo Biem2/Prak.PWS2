@@ -38,3 +38,36 @@
       }
 
  const urlapi = `https://api.weatherapi.com/v1/current.json?key=905069ee454e4565b2564306250810&q=${lokasiInput}&aqi=no`;
+   $.ajax({
+        url: urlapi,
+        method: "GET",
+        success: function (data) {
+          console.log(data);
+
+ 
+          const lokasi = data.location.name;
+          const negara = data.location.country;
+          const provinsi = data.location.region; 
+          const kecamatan = data.location.tz_id; 
+          const suhu = data.current.temp_c;
+          const latitude = data.location.lat;
+          const longitude = data.location.lon;
+
+      
+          $("#Lokasi").text(lokasi);
+          $("#Negara").text(negara);
+          $("#Provinsi").text(provinsi);
+          $("#Kecamatan").text(kecamatan);
+          $("#Suhu").text(suhu + " °C");
+          $("#Latitude").text(latitude);
+          $("#Longitude").text(longitude);
+        },
+        error: function (xhr, status, error) {
+          console.error(error);
+          alert("Gagal mengambil data cuaca. Periksa kembali nama kota atau koneksi internet.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
